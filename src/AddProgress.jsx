@@ -43,7 +43,7 @@ function AddProgress() {
 
     if (isConfirmed) {
       try {
-        const response = await axios.delete(`http://localhost:8081/deleteProgress/${id}/${record._id}`);
+        const response = await axios.delete(`https://puffy-burst-production.up.railway.app/${id}/${record._id}`);
         console.log("responseee   ",response);
         if (response.data.Status === "Success") {
           console.log("deleted");
@@ -114,7 +114,7 @@ const calculateTotalValue = () => {
   const openViewModal = async (day) => {
     try {
       const response = await axios.get(
-        `http://localhost:8081/getDayProgress/${id}/${day}/${selectedMonth}/${selectedYear}`
+        `https://puffy-burst-production.up.railway.app/getDayProgress/${id}/${day}/${selectedMonth}/${selectedYear}`
       );
       console.log("My response", response.data);
       const progressDayData = response.data.Result;
@@ -140,7 +140,7 @@ const calculateTotalValue = () => {
   const fetchEmployeeDetails = async (employeeId) => {
     try {
       const response = await axios.get(
-        `http://localhost:8081/get/${employeeId}`
+        `https://puffy-burst-production.up.railway.app/get/${employeeId}`
       );
 
       return response.data.Result; // Assuming the employee details are in Result array
@@ -202,7 +202,7 @@ const calculateTotalValue = () => {
     // Fetch sizes from your backend
     const fetchSizes = async () => {
       try {
-        const response = await axios.get("http://localhost:8081/getSizes");
+        const response = await axios.get("https://puffy-burst-production.up.railway.app/getSizes");
         setSizes(response.data.Result);
       } catch (error) {
         console.error("Error fetching sizes:", error.message);
@@ -216,7 +216,7 @@ const calculateTotalValue = () => {
     // Fetch employees from your backend
     const fetchEmployees = async () => {
       try {
-        const response = await axios.get("http://localhost:8081/getEmployee");
+        const response = await axios.get("https://puffy-burst-production.up.railway.app/getEmployee");
         setEmployees(response.data.Result);
       } catch (error) {
         console.error("Error fetching employees", error.message);
@@ -268,7 +268,7 @@ const calculateTotalValue = () => {
     
 
       const response = await axios.post(
-        `http://localhost:8081/submitProgress/${id}`,
+        `https://puffy-burst-production.up.railway.app/submitProgress/${id}`,
         data
       );
 
@@ -301,7 +301,7 @@ const calculateTotalValue = () => {
       };     
 
       const response = await axios.put(
-        `http://localhost:8081/updateProgress/${id}/${editSelect}`,
+        `https://puffy-burst-production.up.railway.app/updateProgress/${id}/${editSelect}`,
         data
       );
       // console.log("Response",response);
@@ -359,7 +359,7 @@ const calculateTotalValue = () => {
 
       setDaysInMonth(daysInMonth);
       const response = await axios.get(
-        `http://localhost:8081/getProgress/${id}`,
+        `https://puffy-burst-production.up.railway.app/getProgress/${id}`,
         {
           params: {
             month: selectedMonth,
@@ -381,7 +381,7 @@ const calculateTotalValue = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8081/get/${id}`)
+      .get(`https://puffy-burst-production.up.railway.app/get/${id}`)
       .then((res) => setEmployeeData(res.data.Result))
       .catch((err) => console.error(err));
   }, [id]);

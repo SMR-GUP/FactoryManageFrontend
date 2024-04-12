@@ -46,7 +46,7 @@ const formatDate = (day, month, year) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8081/get/${id}`)
+      .get(`https://puffy-burst-production.up.railway.app/get/${id}`)
       .then((res) => setEmployeeData(res.data.Result))
       .catch((err) => console.error(err));
   }, [id]);
@@ -71,7 +71,7 @@ const handleSubmit = async (e) => {
       setDaysInMonth(daysInMonth);
 
       const response = await axios.get(
-        `http://localhost:8081/getPacking/${employeeData.name}`,
+        `https://puffy-burst-production.up.railway.app/getPacking/${employeeData.name}`,
         {
           params: {
             month: selectedMonth,

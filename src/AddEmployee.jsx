@@ -42,15 +42,7 @@ function AddEmployee() {
     
     const navigate=useNavigate()
 
-    // const handleSubmit =(event)=>{
-    //     event.preventDefault();
-    //     console.log("Data entered  ",data);
-    //     axios.post('http://localhost:8081/create',data)
-    //     .then(res =>{
-    //             navigate('/employee')
-    //     })
-    //     .catch(err=>console.log(err));
-    // }
+   
 
     const handleSubmit = (event) => {
       event.preventDefault();
@@ -72,7 +64,7 @@ if (providedDate > today) {
 }
 
       console.log("Dataaa  ",data);
-        axios.post('http://localhost:8081/create', data)
+        axios.post('https://puffy-burst-production.up.railway.app/create', data)
           .then(res => {
               navigate('/employee');
           })

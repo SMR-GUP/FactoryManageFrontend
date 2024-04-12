@@ -13,7 +13,7 @@ function Progress() {
   const[data,setData]=useState([])
 
   useEffect(()=> {
-    axios.get('http://localhost:8081/getEmployee')
+    axios.get('https://puffy-burst-production.up.railway.app/getEmployee')
     .then(res =>{
         if(res.data.status=="Success")
         {

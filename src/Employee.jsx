@@ -14,7 +14,7 @@ function Employee() {
         console.log("Iddd  ",id);
         const confirmDelete = window.confirm('Are you sure you want to delete this employee???');
         if (confirmDelete) {
-            axios.delete('http://localhost:8081/delete/' + id)
+            axios.delete('https://puffy-burst-production.up.railway.app/delete/' + id)
                 .then(res => {
                     if (res.data.Status === "Success") {
                         window.location.reload(true);
@@ -29,7 +29,7 @@ function Employee() {
     const[data,setData]=useState([])
 
     useEffect(()=> {
-        axios.get('http://localhost:8081/getEmployee')
+        axios.get('https://puffy-burst-production.up.railway.app/getEmployee')
         .then(res =>{
             if(res.data.status==="Success")
             {
@@ -79,9 +79,7 @@ style={{marginLeft:'1px'}}>
                <td style={{color:'black',fontSize:'19px',fontFamily: 'Roboto, sans-serif'}}>{new Date(formattedDate).toLocaleDateString('en-GB')}</td>
                <td style={{color:'black',fontSize:'19px',fontFamily: 'Roboto, sans-serif'}}>{employee.day}</td>
                 <td style={{color:'black',fontSize:'19px',fontFamily: 'Roboto, sans-serif'}}>{employee.salary}</td>
-                {/* <td>{
-                    <img src={`http://localhost:8081/images/`+employee.image } alt="" className='employee_image'/>
-                    }</td> */}
+              
                 <td style={{color:'black',fontSize:'19px',fontFamily: 'Roboto, sans-serif'}}>
                     <button  className="btn btn-primary mr-1"> 
                 <Link 

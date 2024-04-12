@@ -21,7 +21,7 @@ function EditEmployee() {
 
   useEffect(() => {
     // Fetch employee details based on the id
-    axios.get(`http://localhost:8081/get/${id}`)
+    axios.get(`https://puffy-burst-production.up.railway.app/get/${id}`)
       .then(res => {
         const employeeData = res.data.Result;
         setEmployee({
@@ -48,7 +48,7 @@ function EditEmployee() {
     event.preventDefault();
 
     // Make the API call to update employee details
-    axios.put(`http://localhost:8081/update/${id}`, {
+    axios.put(`https://puffy-burst-production.up.railway.app/update/${id}`, {
       name: employee.name,
       joiningDate: employee.joiningDate,
       weekday: employee.weekday,

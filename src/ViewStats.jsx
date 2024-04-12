@@ -27,7 +27,7 @@ const { id } = useParams();
 
 const fetchEmployeeDetails = async (employeeId) => {
   try {
-    const response = await axios.get(`http://localhost:8081/get/${employeeId}`);
+    const response = await axios.get(`https://puffy-burst-production.up.railway.app/get/${employeeId}`);
     return response.data.Result; // Assuming the employee details are in Result array
   } catch (error) {
     console.error(error);
@@ -98,7 +98,7 @@ const handleOpenEditAttendanceModal = async(day) => {
 
 const fetchAttendanceDetails = async (year, month, day) => {
   try {
-    const response = await axios.get(`http://localhost:8081/getDayAttendance/${id}/${year}/${month}/${day}`);
+    const response = await axios.get(`https://puffy-burst-production.up.railway.app/getDayAttendance/${id}/${year}/${month}/${day}`);
     console.log("Atten  ",response);
     return response.data; // Assuming the API returns the attendance details
   } catch (error) {
@@ -130,7 +130,7 @@ const handleAddAttendance = async (e) => {
     };
 
     // Make a POST request to submit the attendance
-    const response = await axios.post(`http://localhost:8081/submitAttendance/${id}`, data);
+    const response = await axios.post(`https://puffy-burst-production.up.railway.app/submitAttendance/${id}`, data);
     
     console.log("RRRR",response);
     // Check the response and handle it accordingly
@@ -168,7 +168,7 @@ const handleEditAttendance = async (e) => {
     };
 
     // Make a PUT request to update the attendance based on ID, day, month, and year
-    const response = await axios.put(`http://localhost:8081/updateAttendance/${id}/${addDay}/${addMonth}/${addYear}`, data);
+    const response = await axios.put(`https://puffy-burst-production.up.railway.app/updateAttendance/${id}/${addDay}/${addMonth}/${addYear}`, data);
 
     // Check the response and handle it accordingly
     if (response.data.success) {
@@ -222,7 +222,7 @@ const handleEditAttendance = async (e) => {
   });
 
   useEffect(() => {
-    axios.get(`http://localhost:8081/get/${id}`)
+    axios.get(`https://puffy-burst-production.up.railway.app/get/${id}`)
       .then(res => setEmployeeData(res.data.Result))
       .catch(err => console.error(err));
   }, [id]);
@@ -248,7 +248,7 @@ const handleEditAttendance = async (e) => {
           // console.log("Global",{setDaysInMonth});
           setDaysInMonth(daysInMonth);
           
-          const response = await axios.get(`http://localhost:8081/getAttendance/${id}`, {
+          const response = await axios.get(`https://puffy-burst-production.up.railway.app/getAttendance/${id}`, {
             params: {
               month: selectedMonth,
               year: selectedYear
@@ -259,7 +259,7 @@ const handleEditAttendance = async (e) => {
           const presentCount = attendanceData.filter(record => record.status === 'present').length;
           // console.log(presentCount);
           setPresentCount(presentCount);
-          const responseSalary = await axios.get(`http://localhost:8081/getSalary/${id}`);
+          const responseSalary = await axios.get(`https://puffy-burst-production.up.railway.app/getSalary/${id}`);
           // console.log("Per day",responseSalary.data);
           setPerDaySalary(responseSalary.data.Salary);
           const totalSalary = (responseSalary.data.Salary)*presentCount;
