@@ -9,7 +9,6 @@ import './style.css'
 
 function Employee() {
 
-    const navigate=useNavigate()
 
 
 
@@ -21,7 +20,7 @@ function Employee() {
             axios.delete('https://puffy-burst-production.up.railway.app/delete/' + id)
                 .then(res => {
                     if (res.data.Status === "Success") {
-                        navigate('/employee');
+                        window.location.reload(true);
                     } else {
                         alert("Error");
                     }
