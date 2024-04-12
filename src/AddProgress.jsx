@@ -43,7 +43,7 @@ function AddProgress() {
 
     if (isConfirmed) {
       try {
-        const response = await axios.delete(`https://puffy-burst-production.up.railway.app/${id}/${record._id}`);
+        const response = await axios.delete(`https://puffy-burst-production.up.railway.app/deleteProgress/${id}/${record._id}`);
         console.log("responseee   ",response);
         if (response.data.Status === "Success") {
           console.log("deleted");
