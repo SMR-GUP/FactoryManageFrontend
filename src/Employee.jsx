@@ -1,12 +1,16 @@
 import React,{useState,useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom';
 import './style.css'
 
 
 
 
 function Employee() {
+
+    const navigate=useNavigate()
+
 
 
     const handleDelete = (id) => {
@@ -17,7 +21,7 @@ function Employee() {
             axios.delete('https://puffy-burst-production.up.railway.app/delete/' + id)
                 .then(res => {
                     if (res.data.Status === "Success") {
-                        window.location.reload(true);
+                        navigate('/employee');
                     } else {
                         alert("Error");
                     }

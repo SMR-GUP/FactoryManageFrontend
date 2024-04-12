@@ -58,8 +58,6 @@ function EditEmployee() {
         if (res.data.Status === 'Success') {
           // Handle success, e.g., redirect to employee list page
           navigate('/employee');
-
-
         }
       })
       .catch(err => console.error(err));
