@@ -1,0 +1,61 @@
+.add-progress-modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    width: 370px;
+  }
+  
+  /* .add-progress-modal.visible {
+    display: block;
+  } */
+  
+  .add-progress-modal .modal-content {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .add-progress-modal label {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .add-progress-modal button {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .add-progress-modal button:hover {
+    background-color: #45a049;
+  }
+  
+  /* Additional styling as needed */
+  /* AddProgress.css (or your preferred stylesheet) */
+
+/* Style for the select dropdown */
+
+.add-progress-modal-overlay {
+  display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Style for the modal content */

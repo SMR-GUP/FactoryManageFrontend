@@ -1,0 +1,30 @@
+/* Add this CSS to your stylesheet */
+
+.sizeEntryButton {
+    background-color: #9575cd; /* Light purple color */
+    color: #faf8f8; /* Black text color */
+    font-weight: bold; /* Bold text */
+    border-radius: 5px;
+    border: none; /* Remove default button border */
+    padding: 10px 20px; /* Adjust padding as needed */
+    margin-top: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Smooth transition on hover */
+  }
+  
+  .sizeEntryButton:hover {
+    background-color: #7e57c2; /* Darker purple color on hover */
+  }
+
+ /* Add this to your CSS stylesheet */
+  
+  .progress-cancel-button {
+    background-color: #f44336; /* Red background color */
+    color: #fff; /* White text color */
+  }
+  
+  .progress-add-button:hover,
+  .progress-cancel-button:hover {
+    opacity: 0.9;
+  }
+  

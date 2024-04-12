@@ -1,0 +1,29 @@
+.login-page {
+  display: flex;
+  height: 100vh;
+}
+
+.login-container {
+  width: 100%;
+  max-width: 1500px; /* Adjust this as needed */
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  background-image: linear-gradient(
+    to bottom,
+    #f8e4c3,
+    /* Orange */ #f5b1a5,
+    /* Pink */ #f0c69f,
+    /* Blue */ #f5cf9e,
+    /* Purple */ #f3f186
+  );
+}
+
+.login-form {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Additional styling for the image (if needed) */
