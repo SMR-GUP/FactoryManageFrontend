@@ -43,7 +43,7 @@ function AddProgress() {
 
     if (isConfirmed) {
       try {
-        const response = await axios.delete(`https://puffy-burst-production.up.railway.app/deleteProgress/${id}/${record._id}`);
+        const response = await axios.delete(`https://ems-server-production.onrender.com/deleteProgress/${id}/${record._id}`);
         console.log("responseee   ",response);
         if (response.data.Status === "Success") {
           console.log("deleted");
@@ -114,7 +114,7 @@ const calculateTotalValue = () => {
   const openViewModal = async (day) => {
     try {
       const response = await axios.get(
-        `https://puffy-burst-production.up.railway.app/getDayProgress/${id}/${day}/${selectedMonth}/${selectedYear}`
+        `https://ems-server-production.onrender.com/getDayProgress/${id}/${day}/${selectedMonth}/${selectedYear}`
       );
       console.log("My response", response.data);
       const progressDayData = response.data.Result;
@@ -140,7 +140,7 @@ const calculateTotalValue = () => {
   const fetchEmployeeDetails = async (employeeId) => {
     try {
       const response = await axios.get(
-        `https://puffy-burst-production.up.railway.app/get/${employeeId}`
+        `https://ems-server-production.onrender.com/get/${employeeId}`
       );
 
       return response.data.Result; // Assuming the employee details are in Result array
@@ -202,7 +202,7 @@ const calculateTotalValue = () => {
     // Fetch sizes from your backend
     const fetchSizes = async () => {
       try {
-        const response = await axios.get("https://puffy-burst-production.up.railway.app/getSizes");
+        const response = await axios.get("https://ems-server-production.onrender.com/getSizes");
         setSizes(response.data.Result);
       } catch (error) {
         console.error("Error fetching sizes:", error.message);
@@ -216,7 +216,7 @@ const calculateTotalValue = () => {
     // Fetch employees from your backend
     const fetchEmployees = async () => {
       try {
-        const response = await axios.get("https://puffy-burst-production.up.railway.app/getEmployee");
+        const response = await axios.get("https://ems-server-production.onrender.com/getEmployee");
         setEmployees(response.data.Result);
       } catch (error) {
         console.error("Error fetching employees", error.message);
