@@ -54,7 +54,7 @@ const calculateTotalValue = () => {
       });
     
       useEffect(() => {
-        axios.get(`https://puffy-burst-production.up.railway.app/get/${id}`)
+        axios.get(`https://ems-server-production.onrender.com/get/${id}`)
           .then(res => setEmployeeData(res.data.Result))
           .catch(err => console.error(err));
       }, [id]);
@@ -78,7 +78,7 @@ const calculateTotalValue = () => {
           const daysInMonth=getDaysInMonth(numericMonth,numericYear);
           setDaysInMonth(daysInMonth);
           const response = await axios.get(
-            `https://puffy-burst-production.up.railway.app/getProgress/${id}`,
+            `https://ems-server-production.onrender.com/getProgress/${id}`,
             {
               params: {
                 month: selectedMonth,
