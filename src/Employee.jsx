@@ -42,6 +42,15 @@ function Employee() {
         .catch(err =>(console.log(err)))
     },[])
 
+    let options = {
+        timeZone: 'Asia/Kolkata', // Set the time zone to Indian Standard Time
+        hour12: false, // Use 24-hour format
+       
+        year: 'numeric', // Display year
+        month: 'long', // Display full month name
+        day: 'numeric', // Display day of the month
+       
+      };
 
   return (
     <div className='px-5 py-3'>
@@ -79,7 +88,7 @@ style={{marginLeft:'1px'}}>
     return (
             <tr key={index}>
                 <td style={{color:'black',fontSize:'19px',fontFamily: 'Roboto, sans-serif'}}>{employee.name}</td>
-               <td style={{color:'black',fontSize:'19px',fontFamily: 'Roboto, sans-serif'}}>{new Date(formattedDate).toLocaleDateString('en-GB')}</td>
+               <td style={{color:'black',fontSize:'19px',fontFamily: 'Roboto, sans-serif'}}>{new Date(formattedDate).toLocaleDateString('en-IN',options)}</td>
                <td style={{color:'black',fontSize:'19px',fontFamily: 'Roboto, sans-serif'}}>{employee.day}</td>
                 <td style={{color:'black',fontSize:'19px',fontFamily: 'Roboto, sans-serif'}}>{employee.salary}</td>
               
