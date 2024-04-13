@@ -268,7 +268,7 @@ const calculateTotalValue = () => {
     
 
       const response = await axios.post(
-        `https://puffy-burst-production.up.railway.app/submitProgress/${id}`,
+        `https://ems-server-production.onrender.com/submitProgress/${id}`,
         data
       );
 
@@ -301,7 +301,7 @@ const calculateTotalValue = () => {
       };     
 
       const response = await axios.put(
-        `https://puffy-burst-production.up.railway.app/updateProgress/${id}/${editSelect}`,
+        `https://ems-server-production.onrender.com/updateProgress/${id}/${editSelect}`,
         data
       );
       // console.log("Response",response);
@@ -359,7 +359,7 @@ const calculateTotalValue = () => {
 
       setDaysInMonth(daysInMonth);
       const response = await axios.get(
-        `https://puffy-burst-production.up.railway.app/getProgress/${id}`,
+        `https://ems-server-production.onrender.com/getProgress/${id}`,
         {
           params: {
             month: selectedMonth,
@@ -381,7 +381,7 @@ const calculateTotalValue = () => {
 
   useEffect(() => {
     axios
-      .get(`https://puffy-burst-production.up.railway.app/get/${id}`)
+      .get(`https://ems-server-production.onrender.com/get/${id}`)
       .then((res) => setEmployeeData(res.data.Result))
       .catch((err) => console.error(err));
   }, [id]);
