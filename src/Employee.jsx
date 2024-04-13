@@ -17,7 +17,7 @@ function Employee() {
         console.log("Iddd  ",id);
         const confirmDelete = window.confirm('Are you sure you want to delete this employee???');
         if (confirmDelete) {
-            axios.delete('https://puffy-burst-production.up.railway.app/delete/' + id)
+            axios.delete('https://ems-server-production.onrender.com/delete/' + id)
                 .then(res => {
                     if (res.data.Status === "Success") {
                         window.location.reload(true);
@@ -32,7 +32,7 @@ function Employee() {
     const[data,setData]=useState([])
 
     useEffect(()=> {
-        axios.get('https://puffy-burst-production.up.railway.app/getEmployee')
+        axios.get('https://ems-server-production.onrender.com/getEmployee')
         .then(res =>{
             if(res.data.status==="Success")
             {
@@ -43,12 +43,12 @@ function Employee() {
     },[])
 
     let options = {
-        timeZone: 'Asia/Kolkata', // Set the time zone to Indian Standard Time
+       timeZone: 'Asia/Kolkata', // Set the time zone to Indian Standard Time
         hour12: false, // Use 24-hour format
        
-        year: 'numeric', // Display year
-        month: 'long', // Display full month name
-        day: 'numeric', // Display day of the month
+        year: '2-digit', // Display year
+        month: '2-digit', // Display full month name
+        day: '2-digit', 
        
       };
 
