@@ -65,7 +65,7 @@ if (providedDate > today) {
 }
 
       console.log("Dataaa  ",data);
-        axios.post('https://puffy-burst-production.up.railway.app/create', data)
+        axios.post('https://ems-server-production-7c2f.up.railway.app/create', data)
           .then(res => {
               navigate('/employee');
           })
