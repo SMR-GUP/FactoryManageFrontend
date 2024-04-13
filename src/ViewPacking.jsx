@@ -18,7 +18,7 @@ function ViewPacking() {
 
   useEffect(() => {
     axios
-      .get("https://puffy-burst-production.up.railway.app/getEmployee")
+      .get("https://ems-server-production.onrender.com/getEmployee")
       .then((res) => {
         if (res.data.status == "Success") {
           setData(res.data.Result);
@@ -73,7 +73,7 @@ function ViewPacking() {
 
   useEffect(() => {
     axios
-      .get(`https://puffy-burst-production.up.railway.app/get/${id}`)
+      .get(`https://ems-server-production.onrender.com/get/${id}`)
       .then((res) => setEmployeeData(res.data.Result))
       .catch((err) => console.error(err));
   }, [id]);
@@ -81,7 +81,7 @@ function ViewPacking() {
   const openViewModal = async (day) => {
     try {
       const response = await axios.get(
-        `https://puffy-burst-production.up.railway.app/getDayPacking/${employeeData.name}/${day}/${selectedMonth}/${selectedYear}`
+        `https://ems-server-production.onrender.com/getDayPacking/${employeeData.name}/${day}/${selectedMonth}/${selectedYear}`
       );
       console.log("My response", response.data);
       const packing = response.data.Result;
@@ -116,7 +116,7 @@ function ViewPacking() {
       setDaysInMonth(daysInMonth);
 
       const response = await axios.get(
-        `https://puffy-burst-production.up.railway.app/getPacking/${employeeData.name}`,
+        `https://ems-server-production.onrender.com/getPacking/${employeeData.name}`,
         {
           params: {
             month: selectedMonth,
