@@ -54,6 +54,7 @@ function AddEmployee() {
 
       var today = new Date();
 var providedDate = new Date(data.joiningDate);
+        console.log("Provided Date--->",providedDate);
 var options = { day: '2-digit', month: '2-digit', year: 'numeric' };
 
 
