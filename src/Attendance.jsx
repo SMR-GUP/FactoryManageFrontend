@@ -7,7 +7,7 @@ function Attendance() {
   const[data,setData]=useState([])
 
   useEffect(()=> {
-    axios.get('https://puffy-burst-production.up.railway.app/getEmployee')
+    axios.get('https://ems-server-production.onrender.com/getEmployee')
     .then(res =>{
         if(res.data.status=="Success")
         {
