@@ -85,6 +85,8 @@ style={{marginLeft:'1px'}}>
             <tbody>
     {data.map((employee, index) => {
     const formattedDate = new Date(employee.date).toLocaleDateString();
+        console.log("Formaateddd  ",formattedDate);
+
     return (
             <tr key={index}>
                 <td style={{color:'black',fontSize:'19px',fontFamily: 'Roboto, sans-serif'}}>{employee.name}</td>
