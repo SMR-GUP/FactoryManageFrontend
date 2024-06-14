@@ -18,6 +18,7 @@ function AddProgress() {
   const [addPacked, setAddPacked] = useState("");
   const [addSizeno, setAddSizeno] = useState("");
   const [addValue, setAddValue] = useState("");
+  const [sizeCode, setSizeCode]=useState("");
   const [addQuantity, setAddQuantity] = useState("");
   const [sizes, setSizes] = useState([]);
   const [employees, setEmployees] = useState([]);
@@ -81,6 +82,7 @@ function AddProgress() {
       setAddQuantity(record.quantity);
       setAddPacked(record.packed);
       setAddSizeno(record.sizeno);
+      setSizeCode(findSizeCode(record.sizeno));
       setAddValue(record.value);
       setViewModalOpen(false);
       setEditModalOpen(true);
@@ -162,8 +164,10 @@ const calculateTotalValue = () => {
       setAddYear(selectedYear);
       setAddPacked("not packed");
       setAddSizeno("");
+      setSizeCode("");
       setAddValue("");
       setAddQuantity("");
+
 
 
       function normalizeDateToMidnight(date) {
@@ -396,11 +400,18 @@ const calculateTotalValue = () => {
         const rawValue = selectedSize.sizecode * addQuantity;
         const roundedValue = parseFloat(rawValue.toFixed(2));
         setAddValue(roundedValue);
+        setSizeCode(selectedSize.sizecode);
       }
     };
 
     calculateValue();
   }, [addSizeno, addQuantity, sizes]);
+
+
+  const findSizeCode = (sizeno) => {
+    const sizeObj = sizes.find(size => size.sizeno === sizeno);
+    return sizeObj ? sizeObj.sizecode : 'N/A'; // Use 'N/A' if sizecode is not found
+  };
 
   return (
     <div>
@@ -566,20 +577,43 @@ const calculateTotalValue = () => {
                     placeholder="Enter Quantity"
                   />
 
-                  <label htmlFor="size number">Size Number:</label>
-                  <select
-                    id="size no"
-                    value={addSizeno}
-                    onChange={(e) => setAddSizeno(e.target.value)}
-                  >
-                    <option value="">Select Size Number</option>
-                    {Array.isArray(sizes) &&
-                      sizes.map((size) => (
-                        <option key={size.sizeno} value={size.sizeno}>
-                          {size.sizeno}
-                        </option>
-                      ))}
-                  </select>
+                 
+<div style={{ display: "flex", alignItems: "center" }}>
+  <div style={{ marginRight: "20px" }}>
+    <label htmlFor="size number">Size Number:</label>
+    <select
+      id="size no"
+      value={addSizeno}
+      onChange={(e) => setAddSizeno(e.target.value)}
+    >
+      <option>Select Size Number</option>
+      {Array.isArray(sizes) &&
+        sizes.map((size) => (
+          <option key={size.sizeno} value={size.sizeno}>
+            {size.sizeno}
+          </option>
+        ))}
+    </select>
+  </div>
+
+  <div>
+  <p style={{
+  marginTop: '45px',
+  fontSize: '18px',
+  padding: '6px',
+  border: '1px solid black',
+  borderRadius: '5px',
+  display: 'inline-block',
+  backgroundColor: '#f9f9f9',
+  color: '#333'
+}}>
+  Size Code: <span style={{ paddingLeft: '10px' ,color:'black'}}>{sizeCode}</span>
+</p>
+
+  </div>
+</div>
+
+              
 
                   <label htmlFor="value" style={{ marginTop: "20px" }}>
                     Value:
@@ -649,9 +683,11 @@ const calculateTotalValue = () => {
                     <table className="table">
                       <thead>
                         <tr>
-                          <th style={{fontFamily:'Roboto, sans-serif'}}>Serial Number</th>
-                          <th  style={{fontFamily:'Roboto, sans-serif'}}>Size Number</th>
                           <th style={{fontFamily:'Roboto, sans-serif'}}>Quantity(in kg)</th>
+                          <th  style={{fontFamily:'Roboto, sans-serif'}}>Size Number</th>
+
+                          <th style={{fontFamily:'Roboto, sans-serif'}}>Size Code</th>
+
                           <th style={{fontFamily:'Roboto, sans-serif'}}>Value</th>
                           <th style={{fontFamily:'Roboto, sans-serif'}}>Packed By</th>
                           <th style={{fontFamily:'Roboto, sans-serif'}}>Actions</th>
@@ -659,10 +695,14 @@ const calculateTotalValue = () => {
                       </thead>
                       <tbody>
                         {progressDayData.map((record, index) => (
+                          
+                           
                           <tr key={index}>
-                            <td>{index + 1}</td>
+                                                        <td style={{fontSize:'18px',fontFamily:'Roboto, sans-serif'}}>{record.quantity}</td>
+
                             <td style={{fontSize:'18px',fontFamily:'Roboto, sans-serif'}}>{record.sizeno}</td>
-                            <td style={{fontSize:'18px',fontFamily:'Roboto, sans-serif'}}>{record.quantity}</td>
+                            <td style={{fontSize:'18px',fontFamily:'Roboto, sans-serif'}}>{findSizeCode(record.sizeno)}</td>
+
                             <td style={{fontSize:'18px',fontFamily:'Roboto, sans-serif'}}>{record.value}</td>
                             <td style={{fontSize:'18px',fontFamily:'Roboto, sans-serif'}}>{record.packed}</td>
                             <td>
@@ -678,17 +718,18 @@ const calculateTotalValue = () => {
 
                         {/* Total row */}
                         <tr>
-                          <td colSpan="2">
-                            <b style={{fontSize:'18px',fontFamily:'Roboto, sans-serif'}}>Total</b>
-                          </td>
-                          <td style={{fontSize:'18px'}}>
-                            <b>{calculateTotalQuantity()} kg</b>
-                          </td>
-                          <td style={{fontSize:'18px'}}>
-                            <b>{calculateTotalValue()}</b>
-                          </td>
-                          <td></td>
-                        </tr>
+  <td colSpan="1" style={{ fontSize: '17px', fontFamily: 'Roboto, sans-serif',textAlign:'center' }}>
+    <b>Quantity: {calculateTotalQuantity()} kg</b>
+  </td>
+  <td colSpan="1" style={{ fontSize: '17px', fontFamily: 'Roboto, sans-serif', textAlign: 'center' }}>
+  </td>
+  
+  <td colSpan="2" style={{ fontSize: '17px', fontFamily: 'Roboto, sans-serif', textAlign: 'center' }}>
+    <b>Value: {calculateTotalValue()}</b>
+  </td>
+  <td style={{ fontSize: '17px', fontFamily: 'Roboto, sans-serif', textAlign: 'center' }} colSpan="2"> <b>Total</b></td>
+</tr>
+
                       </tbody>
                     </table>
 
@@ -729,20 +770,42 @@ const calculateTotalValue = () => {
                     autoComplete="off"
                   />
 
-                  <label htmlFor="size number">Size Number:</label>
-                  <select
-                    id="size no"
-                    value={addSizeno}
-                    onChange={(e) => setAddSizeno(e.target.value)}
-                  >
-                    <option>Select Size Number</option>
-                    {Array.isArray(sizes) &&
-                      sizes.map((size) => (
-                        <option key={size.sizeno} value={size.sizeno}>
-                          {size.sizeno}
-                        </option>
-                      ))}
-                  </select>
+<div style={{ display: "flex", alignItems: "center" }}>
+  <div style={{ marginRight: "20px" }}>
+    <label htmlFor="size number">Size Number:</label>
+    <select
+      id="size no"
+      value={addSizeno}
+      onChange={(e) => setAddSizeno(e.target.value)}
+    >
+      <option>Select Size Number</option>
+      {Array.isArray(sizes) &&
+        sizes.map((size) => (
+          <option key={size.sizeno} value={size.sizeno}>
+            {size.sizeno}
+          </option>
+        ))}
+    </select>
+  </div>
+
+  <div>
+  <p style={{
+  marginTop: '45px',
+  fontSize: '18px',
+  padding: '6px',
+  border: '1px solid black',
+  borderRadius: '5px',
+  display: 'inline-block',
+  backgroundColor: '#f9f9f9',
+  color: '#333'
+}}>
+  Size Code: <span style={{ paddingLeft: '10px' ,color:'black'}}>{sizeCode}</span>
+</p>
+
+  </div>
+</div>
+
+
 
                   <label htmlFor="value" style={{ marginTop: "20px" }}>
                     Value:

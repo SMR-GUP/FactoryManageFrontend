@@ -11,10 +11,25 @@ function ViewPacking() {
   const [packingData, setPackingData] = useState([]);
   const [dayPacking, setDayPacking] = useState("");
   const [isViewModalOpen, setViewModalOpen] = useState(false);
+  const [sizes, setSizes] = useState([]);
 
   const { id } = useParams();
 
   const [data, setData] = useState([]);
+
+  useEffect(() => {
+    // Fetch sizes from your backend
+    const fetchSizes = async () => {
+      try {
+        const response = await axios.get("https://ems-server-production.onrender.com/getSizes");
+        setSizes(response.data.Result);
+      } catch (error) {
+        console.error("Error fetching sizes:", error.message);
+      }
+    };
+
+    fetchSizes();
+  }, []);
 
   useEffect(() => {
     axios
@@ -133,6 +148,11 @@ function ViewPacking() {
       // Handle errors here
       console.error(error);
     }
+  };
+
+  const findSizeCode = (sizeno) => {
+    const sizeObj = sizes.find(size => size.sizeno === sizeno);
+    return sizeObj ? sizeObj.sizecode : 'N/A'; // Use 'N/A' if sizecode is not found
   };
 
   return (
@@ -267,20 +287,25 @@ function ViewPacking() {
                     <table className="table">
                       <thead>
                         <tr>
-                          <th style={{fontFamily:"Roboto, sans-serif"}}>Serial Number</th>
-                          <th style={{fontFamily:"Roboto, sans-serif"}}>Size Number</th>
-                          <th style={{fontFamily:"Roboto, sans-serif"}}>Quantity(in kg)</th>
-                          <th style={{fontFamily:"Roboto, sans-serif"}}>Value</th>
+                        <th style={{fontFamily:'Roboto, sans-serif'}}>Quantity(in kg)</th>
+                          <th  style={{fontFamily:'Roboto, sans-serif'}}>Size Number</th>
+
+                          <th style={{fontFamily:'Roboto, sans-serif'}}>Size Code</th>
+
+                          <th style={{fontFamily:'Roboto, sans-serif'}}>Value</th>
                           <th style={{fontFamily:"Roboto, sans-serif"}}>Manufactured By</th>
                         </tr>
                       </thead>
                       <tbody>
                         {dayPacking.map((record, index) => (
                           <tr key={index}>
-                            <td style={{fontFamily:"Roboto, sans-serif"}}>{index + 1}</td>
-                            <td style={{fontFamily:"Roboto, sans-serif"}}>{record.sizeno}</td>
-                            <td style={{fontFamily:"Roboto, sans-serif"}}>{record.quantity}</td>
-                            <td style={{fontFamily:"Roboto, sans-serif"}}>{record.value}</td>
+                                                             <td style={{fontSize:'18px',fontFamily:'Roboto, sans-serif'}}>{record.quantity}</td>
+
+<td style={{fontSize:'18px',fontFamily:'Roboto, sans-serif'}}>{record.sizeno}</td>
+<td style={{fontSize:'18px',fontFamily:'Roboto, sans-serif'}}>{findSizeCode(record.sizeno)}</td>
+
+<td style={{fontSize:'18px',fontFamily:'Roboto, sans-serif'}}>{record.value}</td>
+
                             <td style={{fontFamily:"Roboto, sans-serif"}}>
                               {
                                 data.find(
@@ -293,17 +318,17 @@ function ViewPacking() {
 
                         {/* Total row */}
                         <tr>
-                          <td colSpan="2">
-                            <b style={{fontFamily:"Roboto, sans-serif"}}>Total</b>
-                          </td>
-                          <td>
-                            <b style={{fontFamily:"Roboto, sans-serif"}}>{calculateTotalQuantity()} kg</b>
-                          </td>
-                          <td>
-                            <b style={{fontFamily:"Roboto, sans-serif"}}>{calculateTotalValue()}</b>
-                          </td>
-                          <td></td>
-                        </tr>
+  <td colSpan="1" style={{ fontSize: '17px', fontFamily: 'Roboto, sans-serif',textAlign:'center' }}>
+    <b>Quantity: {calculateTotalQuantity()} kg</b>
+  </td>
+  <td colSpan="1" style={{ fontSize: '17px', fontFamily: 'Roboto, sans-serif', textAlign: 'center' }}>
+  </td>
+  
+  <td colSpan="2" style={{ fontSize: '17px', fontFamily: 'Roboto, sans-serif', textAlign: 'center' }}>
+    <b>Value: {calculateTotalValue()}</b>
+  </td>
+  <td style={{ fontSize: '17px', fontFamily: 'Roboto, sans-serif', textAlign: 'center' }} colSpan="2"> <b>Total</b></td>
+</tr>
                       </tbody>
                     </table>
 
