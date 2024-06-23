@@ -65,7 +65,7 @@ if (providedDate > today) {
 }
 
       console.log("Dataaa  ",data);
-        axios.post('https://ems-server-production.onrender.com/create', data)
+        axios.post('https://factorymanagementserver.onrender.com/create', data)
           .then(res => {
               navigate('/employee');
           })

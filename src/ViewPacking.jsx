@@ -21,7 +21,7 @@ function ViewPacking() {
     // Fetch sizes from your backend
     const fetchSizes = async () => {
       try {
-        const response = await axios.get("https://ems-server-production.onrender.com/getSizes");
+        const response = await axios.get("https://factorymanagementserver.onrender.com/getSizes");
         setSizes(response.data.Result);
       } catch (error) {
         console.error("Error fetching sizes:", error.message);
@@ -33,7 +33,7 @@ function ViewPacking() {
 
   useEffect(() => {
     axios
-      .get("https://ems-server-production.onrender.com/getEmployee")
+      .get("https://factorymanagementserver.onrender.com/getEmployee")
       .then((res) => {
         if (res.data.status == "Success") {
           setData(res.data.Result);
@@ -88,7 +88,7 @@ function ViewPacking() {
 
   useEffect(() => {
     axios
-      .get(`https://ems-server-production.onrender.com/get/${id}`)
+      .get(`https://factorymanagementserver.onrender.com/get/${id}`)
       .then((res) => setEmployeeData(res.data.Result))
       .catch((err) => console.error(err));
   }, [id]);
@@ -96,7 +96,7 @@ function ViewPacking() {
   const openViewModal = async (day) => {
     try {
       const response = await axios.get(
-        `https://ems-server-production.onrender.com/getDayPacking/${employeeData.name}/${day}/${selectedMonth}/${selectedYear}`
+        `https://factorymanagementserver.onrender.com/getDayPacking/${employeeData.name}/${day}/${selectedMonth}/${selectedYear}`
       );
       console.log("My response", response.data);
       const packing = response.data.Result;
@@ -131,7 +131,7 @@ function ViewPacking() {
       setDaysInMonth(daysInMonth);
 
       const response = await axios.get(
-        `https://ems-server-production.onrender.com/getPacking/${employeeData.name}`,
+        `https://factorymanagementserver.onrender.com/getPacking/${employeeData.name}`,
         {
           params: {
             month: selectedMonth,

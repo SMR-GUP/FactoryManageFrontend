@@ -38,7 +38,7 @@ function SizeEntry(){
       };
     
       const addSizeEntry = () => {
-        axios.post('https://ems-server-production.onrender.com/addsize', {
+        axios.post('https://factorymanagementserver.onrender.com/addsize', {
           sizeno: sizeName,
           sizecode: sizeValue,
         })
@@ -52,7 +52,7 @@ function SizeEntry(){
       };
 
       const editSizeEntry = () => {
-        axios.put(`https://ems-server-production.onrender.com/updateSizeEntry/${selectedSize._id}`, {
+        axios.put(`https://factorymanagementserver.onrender.com/updateSizeEntry/${selectedSize._id}`, {
           sizeno: sizeName,
           sizecode: sizeValue,
         })
@@ -75,7 +75,7 @@ function SizeEntry(){
     
         if (isConfirmed) {
           // If user confirms, proceed with deletion
-          axios.delete(`https://ems-server-production.onrender.com/deleteSizeEntry/${size._id}`)
+          axios.delete(`https://factorymanagementserver.onrender.com/deleteSizeEntry/${size._id}`)
             .then(response => {
               console.log('Server Response:', response.data);
               window.location.reload();
@@ -92,7 +92,7 @@ function SizeEntry(){
     const [sizes, setSizes] = useState([]);
     useEffect(() => {
         // Fetch sizes data using Axios
-        axios.get('https://ems-server-production.onrender.com/getSizes')
+        axios.get('https://factorymanagementserver.onrender.com/getSizes')
           .then(response => {
             setSizes(response.data.Result);
             console.log("sizess  data   ",sizes);

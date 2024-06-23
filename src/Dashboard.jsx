@@ -52,7 +52,7 @@ function Dashboard() {
         </div>
         <div class="col p-0 m-0">
             <div className='p-2 d-flex justify-content-centre shadow'>
-            <h3 style={{marginLeft:'380px',fontFamily: "Open Sans, sans-serif",fontSize:'32px'}}>ShreeChem StaffMaster</h3>
+            <h3 style={{marginLeft:'450px',fontFamily: "Open Sans, sans-serif",fontSize:'32px'}}>Factory Sphere</h3>
             </div>
            <Outlet/>
        

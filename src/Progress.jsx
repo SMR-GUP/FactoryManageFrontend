@@ -13,7 +13,7 @@ function Progress() {
   const[data,setData]=useState([])
 
   useEffect(()=> {
-    axios.get('https://ems-server-production.onrender.com/getEmployee')
+    axios.get('https://factorymanagementserver.onrender.com/getEmployee')
     .then(res =>{
         if(res.data.status=="Success")
         {

@@ -17,7 +17,7 @@ function Employee() {
         console.log("Iddd  ",id);
         const confirmDelete = window.confirm('Are you sure you want to delete this employee???');
         if (confirmDelete) {
-            axios.delete('https://ems-server-production.onrender.com/delete/' + id)
+            axios.delete('https://factorymanagementserver.onrender.com/delete/' + id)
                 .then(res => {
                     if (res.data.Status === "Success") {
                         window.location.reload(true);
@@ -32,7 +32,7 @@ function Employee() {
     const[data,setData]=useState([])
 
     useEffect(()=> {
-        axios.get('https://ems-server-production.onrender.com/getEmployee')
+        axios.get('https://factorymanagementserver.onrender.com/getEmployee')
         .then(res =>{
             if(res.data.status==="Success")
             {
